@@ -256,7 +256,7 @@
                 </div>
                 <div class="w-px bg-white/20"></div>
                 <div>
-                    <p class="text-3xl font-black text-white">6<span class="text-secondary">+</span></p>
+                    <p class="text-3xl font-black text-white">6</p>
                     <p class="text-xs text-gray-300 font-medium mt-0.5">Kecamatan</p>
                 </div>
                 <div class="w-px bg-white/20"></div>
