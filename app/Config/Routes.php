@@ -30,6 +30,7 @@ $routes->get('admin/users',              'Admin::users');
 $routes->get('admin/users/tambah',       'Admin::tambahUser');
 $routes->post('admin/users/simpan',      'Admin::simpanUser');
 $routes->post('admin/users/hapus/(:num)','Admin::hapusUser/$1');
+$routes->post('admin/users/ganti-sandi/(:num)','Admin::gantiSandi/$1');
 
 // ── API (JSON) ───────────────────────────────────
 $routes->get('api/sekolah', 'Api::sekolah');

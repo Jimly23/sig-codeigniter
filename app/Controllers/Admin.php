@@ -339,4 +339,71 @@ class Admin extends BaseController
         session()->setFlashdata('success', 'Admin berhasil dihapus.');
         return redirect()->to(base_url('admin/users'));
     }
+
+    /** POST /admin/users/ganti-sandi/{id} — Ganti password admin */
+    public function gantiSandi(int $id)
+    {
+        $userModel = new UserModel();
+        $user = $userModel->find($id);
+
+        if (!$user) {
+            throw new \CodeIgniter\Exceptions\PageNotFoundException("User ID $id tidak ditemukan.");
+        }
+
+        $currentRole = session()->get('role');
+        $isSelf      = ($user['username'] === session()->get('username'));
+
+        // Superadmin bisa ganti sandi siapa saja, admin biasa hanya bisa ganti sandi sendiri
+        if ($currentRole !== 'superadmin' && !$isSelf) {
+            session()->setFlashdata('error', 'Anda tidak memiliki izin untuk mengubah sandi admin lain.');
+            return redirect()->to(base_url('admin/users'));
+        }
+
+        // Validasi input
+        $rules = [
+            'password_baru'    => 'required|min_length[4]',
+            'password_confirm' => 'required|matches[password_baru]',
+        ];
+        $messages = [
+            'password_baru' => [
+                'required'   => 'Password baru wajib diisi.',
+                'min_length' => 'Password baru minimal 4 karakter.',
+            ],
+            'password_confirm' => [
+                'required' => 'Konfirmasi password wajib diisi.',
+                'matches'  => 'Konfirmasi password tidak cocok.',
+            ],
+        ];
+
+        // Jika mengganti sandi sendiri, wajib masukkan password lama
+        if ($isSelf) {
+            $rules['password_lama'] = 'required';
+            $messages['password_lama'] = [
+                'required' => 'Password lama wajib diisi.',
+            ];
+        }
+
+        if (!$this->validate($rules, $messages)) {
+            $errors = $this->validator->getErrors();
+            session()->setFlashdata('error', implode(' ', $errors));
+            return redirect()->to(base_url('admin/users'));
+        }
+
+        // Verifikasi password lama jika mengganti sandi sendiri
+        if ($isSelf) {
+            $passwordLama = $this->request->getPost('password_lama');
+            if (!password_verify($passwordLama, $user['password'])) {
+                session()->setFlashdata('error', 'Password lama tidak sesuai.');
+                return redirect()->to(base_url('admin/users'));
+            }
+        }
+
+        // Update password
+        $userModel->update($id, [
+            'password' => password_hash($this->request->getPost('password_baru'), PASSWORD_DEFAULT),
+        ]);
+
+        session()->setFlashdata('success', 'Sandi untuk "' . esc($user['username']) . '" berhasil diubah.');
+        return redirect()->to(base_url('admin/users'));
+    }
 }
