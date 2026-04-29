@@ -1,6 +1,6 @@
 <!-- ═══════════════════ SIDEBAR ═══════════════════
      Variables expected:
-       $activePage    : 'dashboard' | 'sekolah' | 'tambah'
+       $activePage    : 'dashboard' | 'sekolah' | 'tambah' | 'users'
        $kecamatanList : array of kecamatan strings
        $filterKec     : currently filtered kecamatan (optional)
 ═══════════════════════════════════════════════ -->
@@ -84,6 +84,19 @@ $kecamatanList = $kecamatanList ?? [];
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
             </svg>
             Tambah Data
+        </a>
+
+        <!-- Divider -->
+        <div class="border-t border-gray-100 my-2"></div>
+
+        <!-- Kelola Admin -->
+        <a href="<?= base_url('admin/users') ?>"
+           class="flex items-center gap-2.5 px-3 py-2.5 rounded-lg text-sm font-bold transition-all duration-150
+                  <?= $activePage === 'users' ? 'bg-purple-600 text-white shadow' : 'text-gray-600 hover:bg-purple-50 hover:text-purple-600' ?>">
+            <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"/>
+            </svg>
+            Kelola Admin
         </a>
     </nav>
 

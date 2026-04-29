@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 
+use App\Models\UserModel;
+
 class Auth extends BaseController
 {
     /** GET /login */
@@ -20,14 +22,17 @@ class Auth extends BaseController
         $username = $this->request->getPost('username');
         $password = $this->request->getPost('password');
 
-        // ─── Kredensial statis (ganti dengan query DB nantinya) ───
-        $validUser = 'admin';
-        $validPass = 'admin123';
+        // ─── Autentikasi via database ───
+        $userModel = new UserModel();
+        $user = $userModel->where('username', $username)->first();
 
-        if ($username === $validUser && $password === $validPass) {
+        if ($user && password_verify($password, $user['password'])) {
             session()->set([
-                'is_admin'  => true,
-                'username'  => $username,
+                'is_admin'      => true,
+                'user_id'       => $user['id'],
+                'username'      => $user['username'],
+                'nama_lengkap'  => $user['nama_lengkap'],
+                'role'          => $user['role'],
             ]);
             return redirect()->to(base_url('admin/dashboard'));
         }

@@ -150,7 +150,7 @@
                 </a>
             </li>
             <li>
-                <a href="#data-sekolah" id="nav-data"
+                <a href="<?= base_url('sekolah') ?>" id="nav-data"
                    class="nav-link text-sm font-semibold text-gray-700 hover:text-primary pb-0.5 transition-colors duration-200">
                     Data Sekolah
                 </a>
@@ -169,8 +169,8 @@
     <!-- Mobile Dropdown Menu -->
     <div id="mobile-menu" class="md:hidden hidden bg-white border-t border-gray-100 shadow-lg">
         <div class="px-4 py-3 space-y-1">
-            <a href="#home" class="block px-3 py-2 rounded-lg text-sm font-semibold text-gray-700 hover:bg-blue-50 hover:text-primary transition-colors">Home</a>
-            <a href="#data-sekolah" class="block px-3 py-2 rounded-lg text-sm font-semibold text-gray-700 hover:bg-blue-50 hover:text-primary transition-colors">Data Sekolah</a>
+            <a href="<?= base_url('/') ?>" class="block px-3 py-2 rounded-lg text-sm font-semibold text-gray-700 hover:bg-blue-50 hover:text-primary transition-colors">Home</a>
+            <a href="<?= base_url('sekolah') ?>" class="block px-3 py-2 rounded-lg text-sm font-semibold text-gray-700 hover:bg-blue-50 hover:text-primary transition-colors">Data Sekolah</a>
         </div>
     </div>
 </nav>
@@ -542,11 +542,34 @@
         attributionControl: true,
     });
 
-    // Tile layer OpenStreetMap
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    // ─── TILE LAYERS ──────────────────────────────────────────
+    // Satelit (Google) — default
+    const satelit = L.tileLayer('https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
+        maxZoom: 20,
+        attribution: '&copy; Google Maps'
+    });
+
+    // Peta biasa (OpenStreetMap)
+    const osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map);
+    });
+
+    // Hybrid (Google Satellite + label)
+    const hybrid = L.tileLayer('https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}', {
+        maxZoom: 20,
+        attribution: '&copy; Google Maps'
+    });
+
+    // Set satelit sebagai default
+    satelit.addTo(map);
+
+    // Layer control (pojok kanan atas)
+    L.control.layers({
+        '🛰️ Satelit': satelit,
+        '🗺️ Peta': osm,
+        '🌍 Hybrid': hybrid,
+    }, null, { position: 'topright', collapsed: true }).addTo(map);
 
     // Custom marker icon
     const smkIcon = L.divIcon({

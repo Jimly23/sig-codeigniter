@@ -32,7 +32,6 @@ class Api extends BaseController
                 'kecamatan'      => $s['kecamatan'],
                 'alamat'         => $s['alamat'],
                 'akreditasi'     => $s['akreditasi'],
-                'kepala_sekolah' => $s['kepala_sekolah'],
                 'jurusan'        => $s['jurusan'],
                 'no_telp'        => $s['no_telp'],
                 'email'          => $s['email'],

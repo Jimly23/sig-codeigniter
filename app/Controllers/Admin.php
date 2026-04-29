@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\SekolahModel;
+use App\Models\UserModel;
 
 class Admin extends BaseController
 {
@@ -111,10 +112,10 @@ class Admin extends BaseController
             'kecamatan'      => $this->request->getPost('kecamatan'),
             'alamat'         => $this->request->getPost('alamat'),
             'akreditasi'     => $this->request->getPost('akreditasi'),
-            'kepala_sekolah' => $this->request->getPost('kepala_sekolah'),
             'no_telp'        => $this->request->getPost('no_telp'),
             'email'          => $this->request->getPost('email'),
             'website'        => $this->request->getPost('website'),
+            'media_sosial'   => $this->request->getPost('media_sosial'),
             'jurusan'        => $this->request->getPost('jurusan'),
             'luas_tanah'     => $this->request->getPost('luas_tanah'),
             'latitude'       => $this->request->getPost('latitude'),
@@ -194,10 +195,10 @@ class Admin extends BaseController
             'kecamatan'      => $this->request->getPost('kecamatan'),
             'alamat'         => $this->request->getPost('alamat'),
             'akreditasi'     => $this->request->getPost('akreditasi'),
-            'kepala_sekolah' => $this->request->getPost('kepala_sekolah'),
             'no_telp'        => $this->request->getPost('no_telp'),
             'email'          => $this->request->getPost('email'),
             'website'        => $this->request->getPost('website'),
+            'media_sosial'   => $this->request->getPost('media_sosial'),
             'jurusan'        => $this->request->getPost('jurusan'),
             'luas_tanah'     => $this->request->getPost('luas_tanah'),
             'latitude'       => $this->request->getPost('latitude'),
@@ -251,5 +252,91 @@ class Admin extends BaseController
 
         session()->setFlashdata('success', 'Data SMK berhasil dihapus.');
         return redirect()->to(base_url('admin/sekolah'));
+    }
+
+    // ═══════════════════════════════════════════════════════════
+    // ─── KELOLA ADMIN USERS ─────────────────────────────────────
+    // ═══════════════════════════════════════════════════════════
+
+    /** GET /admin/users — Daftar semua admin */
+    public function users(): string
+    {
+        $userModel = new UserModel();
+        $users = $userModel->orderBy('id', 'ASC')->findAll();
+
+        return view('admin/users/index', [
+            'pageTitle'     => 'Kelola Admin',
+            'activePage'    => 'users',
+            'kecamatanList' => $this->kecamatanList,
+            'users'         => $users,
+        ]);
+    }
+
+    /** GET /admin/users/tambah — Form tambah admin */
+    public function tambahUser(): string
+    {
+        return view('admin/users/form', [
+            'pageTitle'     => 'Tambah Admin Baru',
+            'activePage'    => 'users',
+            'kecamatanList' => $this->kecamatanList,
+        ]);
+    }
+
+    /** POST /admin/users/simpan — Simpan admin baru */
+    public function simpanUser()
+    {
+        $rules = [
+            'username'         => 'required|max_length[50]|is_unique[users.username]',
+            'password'         => 'required|min_length[4]',
+            'password_confirm' => 'required|matches[password]',
+        ];
+
+        $messages = [
+            'username' => [
+                'is_unique' => 'Username sudah digunakan.',
+            ],
+            'password_confirm' => [
+                'matches' => 'Konfirmasi password tidak cocok.',
+            ],
+        ];
+
+        if (!$this->validate($rules, $messages)) {
+            return redirect()->back()
+                             ->withInput()
+                             ->with('errors', $this->validator->getErrors());
+        }
+
+        $userModel = new UserModel();
+        $userModel->insert([
+            'username'      => $this->request->getPost('username'),
+            'password'      => password_hash($this->request->getPost('password'), PASSWORD_DEFAULT),
+            'nama_lengkap'  => $this->request->getPost('nama_lengkap'),
+            'role'          => $this->request->getPost('role') ?? 'admin',
+        ]);
+
+        session()->setFlashdata('success', 'Admin baru berhasil ditambahkan.');
+        return redirect()->to(base_url('admin/users'));
+    }
+
+    /** POST /admin/users/hapus/{id} — Hapus admin */
+    public function hapusUser(int $id)
+    {
+        $userModel = new UserModel();
+        $user = $userModel->find($id);
+
+        if (!$user) {
+            throw new \CodeIgniter\Exceptions\PageNotFoundException("User ID $id tidak ditemukan.");
+        }
+
+        // Tidak bisa hapus diri sendiri
+        if ($user['username'] === session()->get('username')) {
+            session()->setFlashdata('error', 'Tidak dapat menghapus akun yang sedang digunakan.');
+            return redirect()->to(base_url('admin/users'));
+        }
+
+        $userModel->delete($id);
+
+        session()->setFlashdata('success', 'Admin berhasil dihapus.');
+        return redirect()->to(base_url('admin/users'));
     }
 }

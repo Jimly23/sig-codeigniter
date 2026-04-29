@@ -269,15 +269,8 @@
                            class="field-input">
                 </div>
 
-                <!-- Row: Kepala Sekolah + Kontak -->
+                <!-- Row: Kontak + Email -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                    <div>
-                        <label class="field-label" for="kepala_sekolah">Kepala Sekolah</label>
-                        <input type="text" id="kepala_sekolah" name="kepala_sekolah"
-                               placeholder="Drs. H. Ahmad Fauzi, M.Pd."
-                               value="<?= esc(old('kepala_sekolah', $isEdit ? $sekolah['kepala_sekolah'] : '')) ?>"
-                               class="field-input">
-                    </div>
                     <div>
                         <label class="field-label" for="no_telp">Kontak (No. Telepon)</label>
                         <input type="text" id="no_telp" name="no_telp"
@@ -285,10 +278,6 @@
                                value="<?= esc(old('no_telp', $isEdit ? $sekolah['no_telp'] : '')) ?>"
                                class="field-input">
                     </div>
-                </div>
-
-                <!-- Row: Email + Website -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     <div>
                         <label class="field-label" for="email">Email</label>
                         <input type="email" id="email" name="email"
@@ -296,11 +285,22 @@
                                value="<?= esc(old('email', $isEdit ? $sekolah['email'] : '')) ?>"
                                class="field-input">
                     </div>
+                </div>
+
+                <!-- Row: Website + Media Sosial -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     <div>
-                        <label class="field-label" for="website">Media Sosial &amp; Website</label>
+                        <label class="field-label" for="website">🌐 Website</label>
                         <input type="text" id="website" name="website"
-                               placeholder="www.smk.sch.id / IG: @smkbrebes"
-                               value="<?= esc(old('website', $isEdit ? $sekolah['website'] : '')) ?>"
+                               placeholder="https://www.smk.sch.id"
+                               value="<?= esc(old('website', $isEdit ? ($sekolah['website'] ?? '') : '')) ?>"
+                               class="field-input">
+                    </div>
+                    <div>
+                        <label class="field-label" for="media_sosial">📱 Media Sosial</label>
+                        <input type="text" id="media_sosial" name="media_sosial"
+                               placeholder="https://instagram.com/smkbrebes"
+                               value="<?= esc(old('media_sosial', $isEdit ? ($sekolah['media_sosial'] ?? '') : '')) ?>"
                                class="field-input">
                     </div>
                 </div>

@@ -195,7 +195,7 @@
                                     <td class="px-4 py-3 text-center font-bold text-gray-500"><?= $i + 1 ?>.</td>
                                     <td class="px-4 py-3">
                                         <p class="font-bold text-gray-900"><?= esc($s['nama']) ?></p>
-                                        <p class="text-xs text-gray-400 mt-0.5"><?= esc($s['kepala_sekolah']) ?></p>
+                                        <p class="text-xs text-gray-400 mt-0.5">NPSN: <?= esc($s['npsn'] ?? '-') ?></p>
                                     </td>
                                     <td class="px-4 py-3">
                                         <span class="inline-block bg-gray-100 text-gray-700 text-xs font-semibold px-2.5 py-1 rounded-full">

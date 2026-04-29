@@ -25,7 +25,12 @@ $routes->get('admin/sekolah/edit/(:num)',   'Admin::edit/$1');
 $routes->post('admin/sekolah/update/(:num)','Admin::update/$1');
 $routes->post('admin/sekolah/hapus/(:num)', 'Admin::hapus/$1');
 
+// ── Admin Users ──────────────────────────────────
+$routes->get('admin/users',              'Admin::users');
+$routes->get('admin/users/tambah',       'Admin::tambahUser');
+$routes->post('admin/users/simpan',      'Admin::simpanUser');
+$routes->post('admin/users/hapus/(:num)','Admin::hapusUser/$1');
+
 // ── API (JSON) ───────────────────────────────────
 $routes->get('api/sekolah', 'Api::sekolah');
 $routes->post('api/expand-url', 'Api::expandUrl');
-
