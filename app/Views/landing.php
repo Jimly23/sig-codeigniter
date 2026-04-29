@@ -231,7 +231,7 @@
             <!-- CTA Buttons -->
             <div class="animate-fade-up opacity-0 flex flex-wrap gap-4"
                  style="animation-delay:0.75s; animation-fill-mode:forwards">
-                <a href="#data-sekolah" id="btn-lihat-data"
+                <a href="<?= base_url('sekolah') ?>" id="btn-lihat-data"
                    class="inline-flex items-center gap-2 px-7 py-3.5 bg-white text-primary font-bold text-sm rounded-lg shadow-xl hover:bg-primary hover:text-white border-2 border-white hover:border-primary transition-all duration-300 hover:-translate-y-0.5">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/>
@@ -251,12 +251,12 @@
             <div class="animate-fade-up opacity-0 flex flex-wrap gap-8 mt-14"
                  style="animation-delay:0.9s; animation-fill-mode:forwards">
                 <div>
-                    <p class="text-3xl font-black text-white">20<span class="text-secondary">+</span></p>
+                    <p class="text-3xl font-black text-white">37</p>
                     <p class="text-xs text-gray-300 font-medium mt-0.5">SMK Terdaftar</p>
                 </div>
                 <div class="w-px bg-white/20"></div>
                 <div>
-                    <p class="text-3xl font-black text-white">12<span class="text-secondary">+</span></p>
+                    <p class="text-3xl font-black text-white">6<span class="text-secondary">+</span></p>
                     <p class="text-xs text-gray-300 font-medium mt-0.5">Kecamatan</p>
                 </div>
                 <div class="w-px bg-white/20"></div>
