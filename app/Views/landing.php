@@ -155,6 +155,12 @@
                     Data Sekolah
                 </a>
             </li>
+            <li>
+                <a href="<?= base_url('login') ?>"
+                   class="inline-flex items-center justify-center px-5 py-2 text-sm font-bold text-primary bg-blue-50 border border-blue-100 rounded-xl hover:bg-primary hover:text-white transition-all shadow-sm hover:shadow">
+                    Login Admin
+                </a>
+            </li>
         </ul>
 
         <!-- Mobile Hamburger -->
@@ -171,6 +177,11 @@
         <div class="px-4 py-3 space-y-1">
             <a href="<?= base_url('/') ?>" class="block px-3 py-2 rounded-lg text-sm font-semibold text-gray-700 hover:bg-blue-50 hover:text-primary transition-colors">Home</a>
             <a href="<?= base_url('sekolah') ?>" class="block px-3 py-2 rounded-lg text-sm font-semibold text-gray-700 hover:bg-blue-50 hover:text-primary transition-colors">Data Sekolah</a>
+            <div class="pt-2 mt-2 border-t border-gray-100">
+                <a href="<?= base_url('login') ?>" class="block w-full text-center px-3 py-2.5 rounded-lg text-sm font-bold text-primary bg-blue-50 border border-blue-100 hover:bg-primary hover:text-white transition-all">
+                    Login Admin
+                </a>
+            </div>
         </div>
     </div>
 </nav>

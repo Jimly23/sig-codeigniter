@@ -103,6 +103,12 @@
         <ul class="hidden md:flex items-center gap-8">
             <li><a href="<?= base_url('/') ?>"       class="nav-link text-sm font-semibold text-gray-700 hover:text-primary pb-0.5 transition-colors">Home</a></li>
             <li><a href="<?= base_url('sekolah') ?>" class="nav-link text-sm font-semibold text-primary pb-0.5 border-b-2 border-primary">Data Sekolah</a></li>
+            <li>
+                <a href="<?= base_url('login') ?>"
+                   class="inline-flex items-center justify-center px-5 py-2 text-sm font-bold text-primary bg-blue-50 border border-blue-100 rounded-xl hover:bg-primary hover:text-white transition-all shadow-sm hover:shadow">
+                    Login Admin
+                </a>
+            </li>
         </ul>
 
         <button id="menu-btn" class="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors">
@@ -115,6 +121,11 @@
         <div class="px-4 py-3 space-y-1">
             <a href="<?= base_url('/') ?>"       class="block px-3 py-2 rounded-lg text-sm font-semibold text-gray-700 hover:bg-blue-50 hover:text-primary">Home</a>
             <a href="<?= base_url('sekolah') ?>" class="block px-3 py-2 rounded-lg text-sm font-semibold bg-blue-50 text-primary">Data Sekolah</a>
+            <div class="pt-2 mt-2 border-t border-gray-100">
+                <a href="<?= base_url('login') ?>" class="block w-full text-center px-3 py-2.5 rounded-lg text-sm font-bold text-primary bg-blue-50 border border-blue-100 hover:bg-primary hover:text-white transition-all">
+                    Login Admin
+                </a>
+            </div>
         </div>
     </div>
 </nav>
