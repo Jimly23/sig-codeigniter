@@ -119,6 +119,7 @@
             font-size: 12px;
         }
     </style>
+    <link rel="icon" type="image/png" href="<?= base_url('images/logo-brebes.png') ?>">
 </head>
 
 <body class="font-sans bg-gray-50 text-gray-800 overflow-x-hidden">

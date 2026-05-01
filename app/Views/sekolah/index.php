@@ -44,6 +44,7 @@
         .badge-B { background:#dbeafe; color:#1d4ed8; }
         .badge-C { background:#fef9c3; color:#92400e; }
     </style>
+    <link rel="icon" type="image/png" href="<?= base_url('images/logo-brebes.png') ?>">
 </head>
 
 <body class="font-sans bg-gray-50 text-gray-800 overflow-x-hidden">

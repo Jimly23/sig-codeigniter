@@ -58,6 +58,7 @@
         .eye-btn { cursor: pointer; color: #9ca3af; }
         .eye-btn:hover { color: #6b7280; }
     </style>
+    <link rel="icon" type="image/png" href="<?= base_url('images/logo-brebes.png') ?>">
 </head>
 
 <body class="font-sans">

@@ -20,6 +20,7 @@
         tbody tr:nth-child(even){background:#fff}
         tbody tr:hover{background:#eff6ff}
     </style>
+    <link rel="icon" type="image/png" href="<?= base_url('images/logo-brebes.png') ?>">
 </head>
 <body class="font-sans min-h-screen">
 

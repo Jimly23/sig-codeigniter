@@ -18,6 +18,7 @@ $errorId = uniqid('error', true);
     <script>
         <?= file_get_contents(__DIR__ . DIRECTORY_SEPARATOR . 'debug.js') ?>
     </script>
+    <link rel="icon" type="image/png" href="/images/logo-brebes.png">
 </head>
 <body onload="init()">
 

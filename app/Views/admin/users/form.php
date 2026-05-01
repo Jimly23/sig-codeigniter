@@ -30,6 +30,7 @@
             box-shadow: 0 0 0 3px rgba(26,86,219,0.12);
         }
     </style>
+    <link rel="icon" type="image/png" href="<?= base_url('images/logo-brebes.png') ?>">
 </head>
 <body class="font-sans min-h-screen">
 

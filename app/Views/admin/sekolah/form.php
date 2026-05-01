@@ -69,6 +69,7 @@
         .foto-box input[type="file"] { display: none; }
         .foto-box img.preview { max-height: 70px; object-fit: cover; border-radius: 6px; }
     </style>
+    <link rel="icon" type="image/png" href="<?= base_url('images/logo-brebes.png') ?>">
 </head>
 <body class="font-sans min-h-screen">
 

@@ -9,6 +9,7 @@
     <style>
         <?= preg_replace('#[\r\n\t ]+#', ' ', file_get_contents(__DIR__ . DIRECTORY_SEPARATOR . 'debug.css')) ?>
     </style>
+    <link rel="icon" type="image/png" href="/images/logo-brebes.png">
 </head>
 <body>
 

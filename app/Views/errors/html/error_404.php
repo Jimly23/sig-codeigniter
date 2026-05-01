@@ -67,6 +67,7 @@
             color: #dd4814;
         }
     </style>
+    <link rel="icon" type="image/png" href="/images/logo-brebes.png">
 </head>
 <body>
     <div class="wrap">

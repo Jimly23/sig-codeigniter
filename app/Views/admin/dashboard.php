@@ -24,6 +24,7 @@
         [x-cloak] { display: none !important; }
         body { background: #f3f4f6; }
     </style>
+    <link rel="icon" type="image/png" href="<?= base_url('images/logo-brebes.png') ?>">
 </head>
 <body class="font-sans min-h-screen">
 
