@@ -557,7 +557,7 @@
 
     const map = L.map('map-smk', {
         center: mapCenter,
-        zoom: 11,
+        zoom: 10,
         zoomSnap: 0.5,
         zoomDelta: 0.5,
         zoomControl: true,
