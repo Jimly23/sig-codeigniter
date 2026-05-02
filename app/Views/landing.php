@@ -556,7 +556,9 @@
 
     const map = L.map('map-smk', {
         center: mapCenter,
-        zoom: 12,
+        zoom: 9.5,
+        zoomSnap: 0.5,
+        zoomDelta: 0.5,
         zoomControl: true,
         attributionControl: true,
     });
@@ -634,7 +636,7 @@
     };
 
     // Load GeoJSON
-    fetch('<?= base_url("data/kecamatan.geojson") ?>')
+    /* fetch('<?= base_url("data/kecamatan.geojson") ?>')
         .then(res => res.json())
         .then(data => {
             geoJsonLayer = L.geoJSON(data, {
@@ -671,7 +673,7 @@
                 }
             }).addTo(map);
         })
-        .catch(err => console.warn('GeoJSON load error:', err));
+        .catch(err => console.warn('GeoJSON load error:', err)); */
 
     // Fungsi highlight kecamatan
     function highlightKecamatan(kecName) {
@@ -764,7 +766,7 @@
         if (!e.originalEvent.target.closest('.leaflet-marker-icon') &&
             !e.originalEvent.target.closest('.leaflet-popup')) {
             resetHighlight();
-            map.flyTo(mapCenter, 12, { duration: 0.5 });
+            map.flyTo(mapCenter, 9.5, { duration: 0.5 });
         }
     });
 

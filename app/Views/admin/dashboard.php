@@ -51,12 +51,12 @@
                     <?= date('d/m/Y') ?>
                 </span>
                 <!-- Admin info -->
-                <div class="flex items-center gap-2">
+                <a href="<?= base_url('admin/users') ?>" title="Kelola Admin" class="flex items-center gap-2 hover:opacity-80 transition-opacity">
                     <span class="text-sm font-bold text-gray-700"><?= esc(session()->get('username') ?? 'Admin') ?></span>
-                    <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white text-xs font-black uppercase">
+                    <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white text-xs font-black uppercase shadow-sm">
                         <?= strtoupper(substr(session()->get('username') ?? 'A', 0, 1)) ?>
                     </div>
-                </div>
+                </a>
             </div>
         </div>
     </header>
