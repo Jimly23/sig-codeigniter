@@ -497,6 +497,7 @@
 <!-- Leaflet JS -->
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
+
 <!-- ═══════════════════════════════════════════════
      JAVASCRIPT
 ═══════════════════════════════════════════════ -->
@@ -636,86 +637,30 @@
     };
 
     // Load GeoJSON
-    /* fetch('<?= base_url("data/kecamatan.geojson") ?>')
+    fetch('<?= base_url("data/brebes-selatan.geojson") ?>')
         .then(res => res.json())
         .then(data => {
             geoJsonLayer = L.geoJSON(data, {
-                style: function(feature) {
-                    return {
-                        color: feature.properties.color || '#6b7280',
-                        fillColor: feature.properties.fillColor || '#9ca3af',
-                        fillOpacity: 0.15,
-                        weight: 2,
-                        opacity: 0.7,
-                        dashArray: '5, 5',
-                    };
-                },
-                onEachFeature: function(feature, layer) {
-                    // Tooltip nama kecamatan
-                    layer.bindTooltip(
-                        `<div style="font-family:Inter,sans-serif;font-weight:800;font-size:12px;color:${feature.properties.color}">
-                            📍 Kec. ${feature.properties.nama}
-                        </div>`,
-                        { sticky: true, direction: 'top', offset: [0, -10] }
-                    );
-
-                    // Hover effect
-                    layer.on('mouseover', function() {
-                        if (activeKecamatan !== feature.properties.nama) {
-                            this.setStyle({ fillOpacity: 0.30, weight: 3, dashArray: '' });
-                        }
-                    });
-                    layer.on('mouseout', function() {
-                        if (activeKecamatan !== feature.properties.nama) {
-                            this.setStyle({ fillOpacity: 0.15, weight: 2, dashArray: '5, 5' });
-                        }
-                    });
+                style: {
+                    color: '#1a56db',
+                    fillColor: 'transparent',
+                    fillOpacity: 0,
+                    weight: 2.5,
+                    opacity: 0.8,
+                    dashArray: '5, 5',
                 }
             }).addTo(map);
         })
-        .catch(err => console.warn('GeoJSON load error:', err)); */
+        .catch(err => console.warn('GeoJSON load error:', err));
 
-    // Fungsi highlight kecamatan
+    // Fungsi highlight kecamatan dinonaktifkan karena sekarang hanya 1 batas wilayah
     function highlightKecamatan(kecName) {
-        if (!geoJsonLayer) return;
-
-        // Reset semua layer
-        geoJsonLayer.eachLayer(function(layer) {
-            layer.setStyle({
-                fillOpacity: 0.10,
-                weight: 2,
-                dashArray: '5, 5',
-                opacity: 0.5,
-            });
-        });
-
-        // Highlight yang dipilih
-        activeKecamatan = kecName;
-        geoJsonLayer.eachLayer(function(layer) {
-            if (layer.feature.properties.nama === kecName) {
-                layer.setStyle({
-                    fillOpacity: 0.45,
-                    weight: 4,
-                    dashArray: '',
-                    opacity: 1,
-                });
-                layer.bringToFront();
-            }
-        });
+        // no-op
     }
 
-    // Reset highlight
+    // Reset highlight dinonaktifkan
     function resetHighlight() {
-        if (!geoJsonLayer) return;
-        activeKecamatan = null;
-        geoJsonLayer.eachLayer(function(layer) {
-            layer.setStyle({
-                fillOpacity: 0.15,
-                weight: 2,
-                dashArray: '5, 5',
-                opacity: 0.7,
-            });
-        });
+        // no-op
     }
 
     // ─── PASANG MARKER ────────────────────────────────────────
