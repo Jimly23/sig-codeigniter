@@ -640,30 +640,111 @@
     };
 
     // Load GeoJSON
-    fetch('<?= base_url("data/map.geojson") ?>')
+    fetch('<?= base_url("data/brebes-full.geojson") ?>')
         .then(res => res.json())
         .then(data => {
             geoJsonLayer = L.geoJSON(data, {
-                style: {
-                    color: '#1a56db',
-                    fillColor: 'transparent',
-                    fillOpacity: 0,
-                    weight: 2.5,
-                    opacity: 0.8,
-                    dashArray: '5, 5',
+                style: function(feature) {
+                    const kecName = feature.properties.nama;
+                    
+                    // Khusus batas luar Brebes Selatan (jika tergambar dalam satu poligon besar)
+                    if (kecName === 'Brebes Selatan') {
+                        return {
+                            color: '#111827', // Garis luar warna sangat gelap
+                            fillColor: 'transparent',
+                            fillOpacity: 0,
+                            weight: 3,
+                            opacity: 1,
+                            dashArray: ''
+                        };
+                    }
+
+                    // Untuk batas tiap kecamatan
+                    const colorSet = kecamatanColors[kecName] || { color: '#6b7280', fillColor: '#9ca3af' };
+                    return {
+                        color: colorSet.color,
+                        fillColor: colorSet.fillColor,
+                        fillOpacity: 0.15,
+                        weight: 2,
+                        opacity: 0.8,
+                        dashArray: '5, 5',
+                    };
+                },
+                onEachFeature: function(feature, layer) {
+                    const kecName = feature.properties.nama;
+
+                    // Jangan tambahkan interaksi untuk batas luar
+                    if (kecName === 'Brebes Selatan') return;
+
+                    const colorSet = kecamatanColors[kecName] || { color: '#6b7280' };
+
+                    // Tooltip nama kecamatan
+                    layer.bindTooltip(
+                        `<div style="font-family:Inter,sans-serif;font-weight:800;font-size:12px;color:${colorSet.color}">
+                            📍 Kec. ${kecName}
+                        </div>`,
+                        { sticky: true, direction: 'top', offset: [0, -10] }
+                    );
+
+                    // Hover effect
+                    layer.on('mouseover', function() {
+                        if (activeKecamatan !== kecName) {
+                            this.setStyle({ fillOpacity: 0.30, weight: 3, dashArray: '' });
+                        }
+                    });
+                    layer.on('mouseout', function() {
+                        if (activeKecamatan !== kecName) {
+                            this.setStyle({ fillOpacity: 0.15, weight: 2, dashArray: '5, 5' });
+                        }
+                    });
                 }
             }).addTo(map);
         })
         .catch(err => console.warn('GeoJSON load error:', err));
 
-    // Fungsi highlight kecamatan dinonaktifkan karena sekarang hanya 1 batas wilayah
+    // Fungsi highlight kecamatan
     function highlightKecamatan(kecName) {
-        // no-op
+        if (!geoJsonLayer) return;
+
+        // Reset semua layer
+        geoJsonLayer.eachLayer(function(layer) {
+            if (layer.feature.properties.nama === 'Brebes Selatan') return;
+            layer.setStyle({
+                fillOpacity: 0.10,
+                weight: 2,
+                dashArray: '5, 5',
+                opacity: 0.5,
+            });
+        });
+
+        // Highlight yang dipilih
+        activeKecamatan = kecName;
+        geoJsonLayer.eachLayer(function(layer) {
+            if (layer.feature.properties.nama === kecName) {
+                layer.setStyle({
+                    fillOpacity: 0.45,
+                    weight: 4,
+                    dashArray: '',
+                    opacity: 1,
+                });
+                layer.bringToFront();
+            }
+        });
     }
 
-    // Reset highlight dinonaktifkan
+    // Reset highlight
     function resetHighlight() {
-        // no-op
+        if (!geoJsonLayer) return;
+        activeKecamatan = null;
+        geoJsonLayer.eachLayer(function(layer) {
+            if (layer.feature.properties.nama === 'Brebes Selatan') return;
+            layer.setStyle({
+                fillOpacity: 0.15,
+                weight: 2,
+                dashArray: '5, 5',
+                opacity: 0.8,
+            });
+        });
     }
 
     // ─── PASANG MARKER ────────────────────────────────────────
