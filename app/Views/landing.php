@@ -637,7 +637,7 @@
     };
 
     // Load GeoJSON
-    fetch('<?= base_url("data/brebes.geojson") ?>')
+    fetch('<?= base_url("data/brebes-revisi.geojson") ?>')
         .then(res => res.json())
         .then(data => {
             geoJsonLayer = L.geoJSON(data, {
