@@ -555,9 +555,12 @@
     // Koordinat pusat Brebes Selatan (Kab. Brebes, Jawa Tengah)
     const mapCenter = [-7.2200, 108.9000];
 
+    // Deteksi ukuran layar untuk zoom dinamis (Mobile: 10, Desktop: 11)
+    const initialZoom = window.innerWidth < 768 ? 10 : 11;
+
     const map = L.map('map-smk', {
         center: mapCenter,
-        zoom: 10,
+        zoom: initialZoom,
         zoomSnap: 0.5,
         zoomDelta: 0.5,
         zoomControl: true,
@@ -711,7 +714,7 @@
         if (!e.originalEvent.target.closest('.leaflet-marker-icon') &&
             !e.originalEvent.target.closest('.leaflet-popup')) {
             resetHighlight();
-            map.flyTo(mapCenter, 9.5, { duration: 0.5 });
+            map.flyTo(mapCenter, initialZoom, { duration: 0.5 });
         }
     });
 
