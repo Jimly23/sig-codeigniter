@@ -557,7 +557,7 @@
 
     const map = L.map('map-smk', {
         center: mapCenter,
-        zoom: 9.5,
+        zoom: 11,
         zoomSnap: 0.5,
         zoomDelta: 0.5,
         zoomControl: true,
@@ -637,7 +637,7 @@
     };
 
     // Load GeoJSON
-    fetch('<?= base_url("data/brebes-selatan.geojson") ?>')
+    fetch('<?= base_url("data/brebes.geojson") ?>')
         .then(res => res.json())
         .then(data => {
             geoJsonLayer = L.geoJSON(data, {
