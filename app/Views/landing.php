@@ -640,9 +640,15 @@
     };
 
     // Load GeoJSON
-    fetch('<?= base_url("data/brebes-full.geojson") ?>')
+    fetch('<?= base_url("data/map.geojson") ?>')
         .then(res => res.json())
         .then(data => {
+            if (data.features) {
+                data.features.forEach(f => {
+                    let rawName = f.properties.nama || f.properties.Nama || '';
+                    f.properties.nama = rawName.charAt(0).toUpperCase() + rawName.slice(1).toLowerCase();
+                });
+            }
             geoJsonLayer = L.geoJSON(data, {
                 style: function(feature) {
                     const kecName = feature.properties.nama;
