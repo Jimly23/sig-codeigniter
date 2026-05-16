@@ -492,19 +492,13 @@
         </div>
 
         <!-- Sumber Data Info -->
-        <div class="mt-8 pt-8 border-t border-gray-800 flex flex-col sm:flex-row items-center justify-center sm:justify-between gap-4">
-            <span class="inline-flex items-center gap-2 text-gray-400 text-xs font-medium">
+        <div class="mt-8 pt-8 border-t border-gray-800 flex justify-center">
+            <a href="https://share.google/L59lDHO1FKJafsSY3" target="_blank" rel="noopener noreferrer" 
+               class="inline-flex items-center gap-2 text-gray-400 hover:text-white text-xs font-medium transition-colors">
                 <svg class="w-4 h-4 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                 </svg>
                 Sumber data Kemendikdasmen 2026
-            </span>
-            <a href="https://share.google/L59lDHO1FKJafsSY3" target="_blank" rel="noopener noreferrer"
-               class="inline-flex items-center gap-2 px-4 py-2 bg-gray-800 text-gray-300 border border-gray-700 hover:bg-gray-700 hover:text-white rounded-lg text-xs font-medium transition-colors">
-                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
-                </svg>
-                Data Pendidikan Kemendikdasmen
             </a>
         </div>
     </div>
