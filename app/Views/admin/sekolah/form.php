@@ -185,6 +185,9 @@
                                placeholder="Contoh: 20326501"
                                value="<?= esc(old('npsn', $isEdit ? ($sekolah['npsn'] ?? '') : '')) ?>"
                                required
+                               pattern="[0-9]*"
+                               inputmode="numeric"
+                               oninput="this.value = this.value.replace(/[^0-9]/g, '');"
                                class="field-input font-mono">
                     </div>
                     <div>

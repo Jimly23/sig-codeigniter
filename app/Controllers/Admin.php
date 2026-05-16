@@ -84,18 +84,27 @@ class Admin extends BaseController
     {
         // Validasi input
         $rules = [
-            'nama'       => 'required|max_length[150]',
+            'nama'       => 'required|max_length[150]|is_unique[sekolah.nama]',
             'npsn'       => 'required|max_length[20]|is_unique[sekolah.npsn]',
             'kecamatan'  => 'required|max_length[50]',
             'alamat'     => 'required',
             'akreditasi' => 'required|in_list[A,B,C,TT]',
-            'latitude'   => 'required|decimal',
-            'longitude'  => 'required|decimal',
+            'latitude'   => 'required|decimal|is_unique[sekolah.latitude]',
+            'longitude'  => 'required|decimal|is_unique[sekolah.longitude]',
         ];
 
         $messages = [
             'npsn' => [
                 'is_unique' => 'NPSN sudah terdaftar di database.',
+            ],
+            'nama' => [
+                'is_unique' => 'Nama sekolah sudah terdaftar di database.',
+            ],
+            'latitude' => [
+                'is_unique' => 'Latitude sudah terdaftar di database.',
+            ],
+            'longitude' => [
+                'is_unique' => 'Longitude sudah terdaftar di database.',
             ],
         ];
 
@@ -167,18 +176,27 @@ class Admin extends BaseController
 
         // Validasi input (npsn unique kecuali milik sendiri)
         $rules = [
-            'nama'       => 'required|max_length[150]',
+            'nama'       => "required|max_length[150]|is_unique[sekolah.nama,id,{$id}]",
             'npsn'       => "required|max_length[20]|is_unique[sekolah.npsn,id,{$id}]",
             'kecamatan'  => 'required|max_length[50]',
             'alamat'     => 'required',
             'akreditasi' => 'required|in_list[A,B,C,TT]',
-            'latitude'   => 'required|decimal',
-            'longitude'  => 'required|decimal',
+            'latitude'   => "required|decimal|is_unique[sekolah.latitude,id,{$id}]",
+            'longitude'  => "required|decimal|is_unique[sekolah.longitude,id,{$id}]",
         ];
 
         $messages = [
             'npsn' => [
                 'is_unique' => 'NPSN sudah terdaftar di database.',
+            ],
+            'nama' => [
+                'is_unique' => 'Nama sekolah sudah terdaftar di database.',
+            ],
+            'latitude' => [
+                'is_unique' => 'Latitude sudah terdaftar di database.',
+            ],
+            'longitude' => [
+                'is_unique' => 'Longitude sudah terdaftar di database.',
             ],
         ];
 
