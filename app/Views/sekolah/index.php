@@ -261,6 +261,13 @@
                 <div>
                     <p class="text-white font-bold text-sm">SIG SMK Brebes Selatan</p>
                     <p class="text-xs text-gray-500">Sistem Informasi Geografis SMK</p>
+                    <a href="https://share.google/L59lDHO1FKJafsSY3" target="_blank" rel="noopener noreferrer" 
+                        class="inline-flex items-center gap-2 text-gray-400 hover:text-white text-xs font-medium transition-colors">
+                            <svg class="w-4 h-4 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            Sumber data Kemendikdasmen 2026
+                        </a>
                 </div>
             </div>
             <p class="text-xs font-bold tracking-widest uppercase text-gray-500">
@@ -268,6 +275,9 @@
             </p>
             <p class="text-xs text-gray-600">&copy; <?= date('Y') ?> SIG SMK Brebes Selatan.</p>
         </div>
+
+        <!-- Sumber Data Info -->
+        
     </div>
 </footer>
 
