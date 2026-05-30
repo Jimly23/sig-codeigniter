@@ -265,12 +265,37 @@
                 </div>
 
                 <!-- Jurusan Sekolah -->
-                <div>
-                    <label class="field-label" for="jurusan">Jurusan Sekolah</label>
-                    <input type="text" id="jurusan" name="jurusan"
-                           placeholder="Teknik Komputer & Jaringan, Akuntansi, Pemasaran"
-                           value="<?= esc(old('jurusan', $isEdit ? $sekolah['jurusan'] : '')) ?>"
-                           class="field-input">
+                <?php
+                $oldJurusan = old('jurusan', $isEdit ? ($sekolah['jurusan'] ?? '') : '');
+                $jurusanArr = [];
+                if (!empty($oldJurusan)) {
+                    $jurusanArr = array_map('trim', explode(',', $oldJurusan));
+                }
+                if (empty($jurusanArr)) {
+                    $jurusanArr = [''];
+                }
+                $jsonJurusan = htmlspecialchars(json_encode($jurusanArr), ENT_QUOTES, 'UTF-8');
+                ?>
+                <div x-data="{ jurusans: <?= $jsonJurusan ?> }">
+                    <label class="field-label">Jurusan Sekolah</label>
+                    <input type="hidden" name="jurusan" :value="jurusans.filter(j => j.trim() !== '').join(', ')">
+                    <div class="space-y-3">
+                        <template x-for="(j, index) in jurusans" :key="index">
+                            <div class="flex gap-2">
+                                <input type="text" x-model="jurusans[index]"
+                                       placeholder="Contoh: Teknik Komputer & Jaringan"
+                                       class="field-input flex-1">
+                                <button type="button" x-show="jurusans.length > 1" @click="jurusans.splice(index, 1)"
+                                        class="px-4 py-2 bg-red-50 text-red-600 rounded-xl font-bold hover:bg-red-100 transition-colors flex items-center justify-center border border-red-100" title="Hapus Jurusan">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"/></svg>
+                                </button>
+                                <button type="button" x-show="index === jurusans.length - 1" @click="jurusans.push('')"
+                                        class="px-4 py-2 bg-blue-50 text-primary rounded-xl font-bold hover:bg-blue-100 transition-colors flex items-center justify-center border border-blue-100" title="Tambah Jurusan">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+                                </button>
+                            </div>
+                        </template>
+                    </div>
                 </div>
 
                 <!-- Row: Kontak + Email -->
