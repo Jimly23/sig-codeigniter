@@ -248,7 +248,20 @@
                     </div>
                     <div class="info-row">
                         <span class="info-label">Jurusan</span>
-                        <span class="info-value text-xs leading-relaxed"><?= esc($sekolah['jurusan']) ?></span>
+                        <span class="info-value text-xs leading-relaxed">
+                            <?php
+                            $jurusans = array_filter(array_map('trim', explode(',', $sekolah['jurusan'] ?? '')));
+                            if (!empty($jurusans)):
+                            ?>
+                                <ul class="list-disc ml-4 space-y-1">
+                                    <?php foreach ($jurusans as $j): ?>
+                                        <li><?= esc($j) ?></li>
+                                    <?php endforeach; ?>
+                                </ul>
+                            <?php else: ?>
+                                <span class="text-gray-400">–</span>
+                            <?php endif; ?>
+                        </span>
                     </div>
                     <div class="info-row">
                         <span class="info-label">Akreditasi</span>
