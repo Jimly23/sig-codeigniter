@@ -211,35 +211,39 @@
                         <span class="info-value text-primary"><?= esc($sekolah['email'] ?? '-') ?></span>
                     </div>
                     <div class="info-row">
-                        <span class="info-label">Website & Medsos</span>
+                        <span class="info-label">Website</span>
                         <span class="info-value">
-                            <div class="flex flex-wrap gap-2">
-                                <?php if (!empty($sekolah['website']) && $sekolah['website'] !== '-'): ?>
-                                    <?php
-                                        $webUrl = $sekolah['website'];
-                                        if (!preg_match('/^https?:\/\//', $webUrl)) $webUrl = 'https://' . $webUrl;
-                                    ?>
-                                    <a href="<?= esc($webUrl) ?>" target="_blank" rel="noopener"
-                                       class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-blue-50 text-primary text-xs font-bold rounded-lg border border-blue-200 hover:bg-primary hover:text-white transition-all">
-                                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9"/></svg>
-                                        Website
-                                    </a>
-                                <?php endif; ?>
-                                <?php if (!empty($sekolah['media_sosial']) && $sekolah['media_sosial'] !== '-'): ?>
-                                    <?php
-                                        $sosmedUrl = $sekolah['media_sosial'];
-                                        if (!preg_match('/^https?:\/\//', $sosmedUrl)) $sosmedUrl = 'https://' . $sosmedUrl;
-                                    ?>
-                                    <a href="<?= esc($sosmedUrl) ?>" target="_blank" rel="noopener"
-                                       class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-pink-50 text-pink-600 text-xs font-bold rounded-lg border border-pink-200 hover:bg-pink-600 hover:text-white transition-all">
-                                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
-                                        Media Sosial
-                                    </a>
-                                <?php endif; ?>
-                                <?php if (empty($sekolah['website']) && empty($sekolah['media_sosial'])): ?>
-                                    <span class="text-gray-400">–</span>
-                                <?php endif; ?>
-                            </div>
+                            <?php if (!empty($sekolah['website']) && $sekolah['website'] !== '-'): ?>
+                                <?php
+                                    $webUrl = $sekolah['website'];
+                                    if (!preg_match('/^https?:\/\//', $webUrl)) $webUrl = 'https://' . $webUrl;
+                                ?>
+                                <a href="<?= esc($webUrl) ?>" target="_blank" rel="noopener"
+                                   class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-blue-50 text-primary text-xs font-bold rounded-lg border border-blue-200 hover:bg-primary hover:text-white transition-all">
+                                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9"/></svg>
+                                    Website
+                                </a>
+                            <?php else: ?>
+                                <span class="text-gray-400">–</span>
+                            <?php endif; ?>
+                        </span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Media Sosial</span>
+                        <span class="info-value">
+                            <?php if (!empty($sekolah['media_sosial']) && $sekolah['media_sosial'] !== '-'): ?>
+                                <?php
+                                    $sosmedUrl = $sekolah['media_sosial'];
+                                    if (!preg_match('/^https?:\/\//', $sosmedUrl)) $sosmedUrl = 'https://' . $sosmedUrl;
+                                ?>
+                                <a href="<?= esc($sosmedUrl) ?>" target="_blank" rel="noopener"
+                                   class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-pink-50 text-pink-600 text-xs font-bold rounded-lg border border-pink-200 hover:bg-pink-600 hover:text-white transition-all">
+                                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+                                    Media Sosial
+                                </a>
+                            <?php else: ?>
+                                <span class="text-gray-400">–</span>
+                            <?php endif; ?>
                         </span>
                     </div>
                     <div class="info-row">
